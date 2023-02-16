@@ -1,0 +1,50 @@
+{
+  "name": "sesami-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only --no-notify -r tsconfig-paths/register src/bootstrap.ts",
+    "test": "jest",
+    "build": "tsc",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "test:watch": "jest --watch --verbose",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write . && pnpm lint --fix",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "yarn eslint",
+      "yarn prettier --write"
+    ]
+  },
+  "keywords": [],
+  "author": "Amir Ahmadi",
+  "license": "ISC",
+  "devDependencies": {
+    "@jest-decorated/core": "^0.1.7",
+    "@types/jest": "^29.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.34.0",
+    "husky": "^8.0.0",
+    "jest": "^29.4.3",
+    "lint-staged": "^13.1.2",
+    "prettier": "^2.8.4",
+    "ts-jest": "^29.0.5",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.1.2",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
+    "inversify": "^6.0.1",
+    "inversify-express-utils": "^6.4.3",
+    "reflect-metadata": "^0.1.13"
+  }
+}

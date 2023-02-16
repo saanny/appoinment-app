@@ -1,6 +1,7 @@
 import { InversifyExpressServer } from 'inversify-express-utils'
 
 import { container } from '../../di-container'
+import { errorHandler } from './middlewares/ErrorHandler'
 
 class App {
   public port: number
@@ -16,9 +17,10 @@ class App {
       // boot(app);
     })
 
-    // server.setErrorConfig((app) => {
+    server.setErrorConfig((app) => {
+      app.use(errorHandler)
+    })
 
-    // });
     const app = server.build()
 
     app.listen(this.port, () => {

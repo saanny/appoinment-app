@@ -14,8 +14,7 @@ export default {
   moduleNameMapper: {
     '@Domain/(.*)': '<rootDir>/src/domain/$1',
     '@Application/(.*)': '<rootDir>/src/application/$1',
-    '@Infra/(.*)': '<rootDir>/src/infra/$1',
-    '@Web/(.*)': '<rootDir>/src/web/$1',
+    '@Infra/(.*)': '<rootDir>/src/infrastructure/$1',
   },
   testEnvironment: 'node',
 }

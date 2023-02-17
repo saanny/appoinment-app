@@ -18,8 +18,7 @@
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
       "yarn eslint",
-      "yarn prettier --write",
-      "yarn test --watchAll=false --findRelatedTests --bail"
+      "yarn prettier --write"
     ]
   },
   "keywords": [],
@@ -44,11 +43,12 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
+    "@types/supertest": "^2.0.12",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "express": "^4.18.2",
-    "inversify": "^6.0.1",
-    "inversify-express-utils": "^6.4.3",
-    "reflect-metadata": "^0.1.13"
+    "pg": "^8.9.0",
+    "reflect-metadata": "^0.1.13",
+    "sequelize": "^6.28.0"
   }
 }

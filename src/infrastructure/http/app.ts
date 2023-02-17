@@ -1,32 +1,26 @@
-import { InversifyExpressServer } from 'inversify-express-utils'
-
-import { container } from '../../di-container'
 import { errorHandler } from './middlewares/ErrorHandler'
+import express from 'express'
+import { Route } from 'src/adapters/IRoute'
 
-class App {
-  public port: number
+export class Application {
+  private expressApplication: express.Application = express()
 
-  constructor(port: number) {
-    this.port = port
+  constructor(private routeList: Route[]) {
+    this.appConfiguration()
+    this.mountRoute()
   }
 
-  public start(): void {
-    const server = new InversifyExpressServer(container)
+  private mountRoute() {
+    this.routeList.forEach((route) => route.mountRoute(this.expressApplication))
+    this.expressApplication.use(errorHandler)
+  }
 
-    server.setConfig((app) => {
-      // boot(app);
-    })
+  private appConfiguration() {
+    this.expressApplication.use(express.json())
+    this.expressApplication.use(express.urlencoded({ extended: true }))
+  }
 
-    server.setErrorConfig((app) => {
-      app.use(errorHandler)
-    })
-
-    const app = server.build()
-
-    app.listen(this.port, () => {
-      console.log(`app is running on port ${this.port}`)
-    })
+  getExpressApplication(): express.Application {
+    return this.expressApplication
   }
 }
-
-export default App

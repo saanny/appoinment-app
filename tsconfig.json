@@ -48,7 +48,7 @@
 				"src/application/*"
 			],
 			"@Infra/*": [
-				"src/infra/*"
+				"src/infrastructure/*"
 			],
 			"@Web/*": [
 				"src/web/*"

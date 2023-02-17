@@ -4,17 +4,19 @@ import { Route } from './adapters/IRoute'
 import dbInit from './infrastructure/drivers/sequlize/init'
 import { AppoinmentController } from '@Application/AppoinmentController'
 import { AppoinmentCreateRoute } from '@Application/AppoinmentCreateRoute'
-import { AppoinmentStorer } from './services/AppoinmentStorer'
+import { IAppoinmentStorer } from './services/IAppoinmentStorer'
 import { Appoinment } from '@Domain/models/Appointment'
+import { AppoinmentStorer } from './services/AppoinmentStorer'
+import { PostgreAppoinmentRepository } from '@Infra/repositories/PostgreAppoinmentRepository'
 
 dotenv.config()
 dbInit()
 
-const appoinmentStorer: AppoinmentStorer = {
-  storeAppoinment: function (appoinment: Appoinment): Promise<Appoinment> {
-    throw new Error('Function not implemented.')
-  },
-}
+const appoinmentRepository = new PostgreAppoinmentRepository()
+const appoinmentStorer: IAppoinmentStorer = new AppoinmentStorer(
+  appoinmentRepository
+)
+
 const appoinmentController = new AppoinmentController(appoinmentStorer)
 const appoinmentCreateRoute = new AppoinmentCreateRoute(appoinmentController)
 

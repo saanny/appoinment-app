@@ -5,6 +5,8 @@ interface IAppoinment {
   id: number
   start: Date
   end: Date
+  createdAt: Date
+  updatedAt: Date
 }
 export interface IAppoinmentInput extends Optional<IAppoinment, 'id'> {}
 
@@ -17,12 +19,15 @@ class AppoinmentModel
   public id!: number
   public start!: Date
   public end!: Date
+
+  public createdAt!: Date
+  public updatedAt!: Date
 }
 AppoinmentModel.init(
   {
     id: {
       type: DataTypes.INTEGER,
-      autoIncrement: true,
+      autoIncrement: false,
       primaryKey: true,
     },
     start: {
@@ -33,10 +38,18 @@ AppoinmentModel.init(
       type: DataTypes.DATE,
       allowNull: false,
     },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
   },
   {
     tableName: 'appoinments',
-    timestamps: true,
+    timestamps: false,
     sequelize: sequelizeConnection,
     paranoid: true,
   }

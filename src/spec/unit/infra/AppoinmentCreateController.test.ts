@@ -2,8 +2,8 @@ import { AppoinmentController } from '@Application/AppoinmentController'
 import { AppoinmentValidationError } from '@Domain/errors/AppoinmentValidationError'
 import { Appoinment } from '@Domain/models/Appointment'
 import { RequestValidationError } from '@Infra/http/RequestValidationError'
+import { IAppoinmentStorer } from '@Services/IAppoinmentStorer'
 import { request, Request, response, Response } from 'express'
-import { AppoinmentStorer } from 'src/services/AppoinmentStorer'
 
 describe('AppoinmentController', () => {
   it('should throw an error if id not provided', async () => {
@@ -19,10 +19,10 @@ describe('AppoinmentController', () => {
     }
     const res: Response = response
     const next = jest.fn()
-    const appoinmentStorer: AppoinmentStorer = {
+    const IAppoinmentStorer: IAppoinmentStorer = {
       storeAppoinment: jest.fn(),
     }
-    const appoinmentController = new AppoinmentController(appoinmentStorer)
+    const appoinmentController = new AppoinmentController(IAppoinmentStorer)
     await appoinmentController.createAppoinment(req, res, next)
 
     expect(next).toBeCalledTimes(1)
@@ -45,10 +45,10 @@ describe('AppoinmentController', () => {
     }
     const res: Response = response
     const next = jest.fn()
-    const appoinmentStorer: AppoinmentStorer = {
+    const IAppoinmentStorer: IAppoinmentStorer = {
       storeAppoinment: jest.fn(),
     }
-    const appoinmentController = new AppoinmentController(appoinmentStorer)
+    const appoinmentController = new AppoinmentController(IAppoinmentStorer)
     await appoinmentController.createAppoinment(req, res, next)
 
     expect(next).toBeCalledTimes(1)
@@ -71,10 +71,10 @@ describe('AppoinmentController', () => {
     }
     const res: Response = response
     const next = jest.fn()
-    const appoinmentStorer: AppoinmentStorer = {
+    const IAppoinmentStorer: IAppoinmentStorer = {
       storeAppoinment: jest.fn(),
     }
-    const appoinmentController = new AppoinmentController(appoinmentStorer)
+    const appoinmentController = new AppoinmentController(IAppoinmentStorer)
     await appoinmentController.createAppoinment(req, res, next)
 
     expect(next).toBeCalledTimes(1)
@@ -97,10 +97,10 @@ describe('AppoinmentController', () => {
     }
     const res: Response = response
     const next = jest.fn()
-    const appoinmentStorer: AppoinmentStorer = {
+    const IAppoinmentStorer: IAppoinmentStorer = {
       storeAppoinment: jest.fn(),
     }
-    const appoinmentController = new AppoinmentController(appoinmentStorer)
+    const appoinmentController = new AppoinmentController(IAppoinmentStorer)
     await appoinmentController.createAppoinment(req, res, next)
 
     expect(next).toBeCalledTimes(1)
@@ -123,10 +123,10 @@ describe('AppoinmentController', () => {
     }
     const res: Response = response
     const next = jest.fn()
-    const appoinmentStorer: AppoinmentStorer = {
+    const IAppoinmentStorer: IAppoinmentStorer = {
       storeAppoinment: jest.fn(),
     }
-    const appoinmentController = new AppoinmentController(appoinmentStorer)
+    const appoinmentController = new AppoinmentController(IAppoinmentStorer)
     await appoinmentController.createAppoinment(req, res, next)
 
     expect(next).toBeCalledTimes(1)
@@ -148,10 +148,10 @@ describe('AppoinmentController', () => {
     }
     const res: Response = response
     const next = jest.fn()
-    const appoinmentStorer: AppoinmentStorer = {
+    const IAppoinmentStorer: IAppoinmentStorer = {
       storeAppoinment: jest.fn(),
     }
-    const appoinmentController = new AppoinmentController(appoinmentStorer)
+    const appoinmentController = new AppoinmentController(IAppoinmentStorer)
     await appoinmentController.createAppoinment(req, res, next)
 
     expect(next).toBeCalledTimes(1)
@@ -174,10 +174,10 @@ describe('AppoinmentController', () => {
     }
     const res: Response = response
     const next = jest.fn()
-    const appoinmentStorer: AppoinmentStorer = {
+    const IAppoinmentStorer: IAppoinmentStorer = {
       storeAppoinment: jest.fn(),
     }
-    const appoinmentController = new AppoinmentController(appoinmentStorer)
+    const appoinmentController = new AppoinmentController(IAppoinmentStorer)
     await appoinmentController.createAppoinment(req, res, next)
 
     expect(next).toBeCalledTimes(1)
@@ -203,10 +203,10 @@ describe('AppoinmentController', () => {
     }
     const res: Response = response
     const next = jest.fn()
-    const appoinmentStorer: AppoinmentStorer = {
+    const IAppoinmentStorer: IAppoinmentStorer = {
       storeAppoinment: jest.fn(),
     }
-    const appoinmentController = new AppoinmentController(appoinmentStorer)
+    const appoinmentController = new AppoinmentController(IAppoinmentStorer)
     await appoinmentController.createAppoinment(req, res, next)
 
     expect(next).toBeCalledTimes(1)
@@ -234,7 +234,7 @@ describe('AppoinmentController', () => {
     res.status = jest.fn().mockReturnThis()
     res.json = jest.fn()
     const next = jest.fn()
-    const appoinmentStorer: AppoinmentStorer = {
+    const IAppoinmentStorer: IAppoinmentStorer = {
       storeAppoinment: jest
         .fn()
         .mockResolvedValue(
@@ -247,12 +247,12 @@ describe('AppoinmentController', () => {
           )
         ),
     }
-    const appoinmentController = new AppoinmentController(appoinmentStorer)
+    const appoinmentController = new AppoinmentController(IAppoinmentStorer)
     await appoinmentController.createAppoinment(req, res, next)
 
     expect(next).toBeCalledTimes(0)
-    expect(appoinmentStorer.storeAppoinment).toBeCalledTimes(1)
-    expect(appoinmentStorer.storeAppoinment).toBeCalledWith(
+    expect(IAppoinmentStorer.storeAppoinment).toBeCalledTimes(1)
+    expect(IAppoinmentStorer.storeAppoinment).toBeCalledWith(
       new Appoinment(
         1,
         new Date('2020-10-10 20:20'),

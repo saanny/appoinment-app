@@ -16,13 +16,9 @@ describe('AppoinmentController', () => {
   it('should throw an error if id not provided', async () => {
     const req: Request = expect.any(request)
     req.body = {
-      appoinments: [
-        {
-          start: new Date(),
-          createdAt: '2020-09-02 14:23:12',
-          updatedAt: '2020-09-28 14:23:12',
-        },
-      ],
+      start: new Date(),
+      createdAt: '2020-09-02 14:23:12',
+      updatedAt: '2020-09-28 14:23:12',
     }
     const res: Response = response
     const next = jest.fn()
@@ -43,14 +39,10 @@ describe('AppoinmentController', () => {
   it('should throw an error if start or end date not provided', async () => {
     const req: Request = expect.any(request)
     req.body = {
-      appoinments: [
-        {
-          id: 1,
-          start: new Date(),
-          createdAt: '2020-09-02 14:23:12',
-          updatedAt: '2020-09-28 14:23:12',
-        },
-      ],
+      id: 1,
+      start: new Date(),
+      createdAt: '2020-09-02 14:23:12',
+      updatedAt: '2020-09-28 14:23:12',
     }
     const res: Response = response
     const next = jest.fn()
@@ -71,14 +63,10 @@ describe('AppoinmentController', () => {
   it('should throw an error if start date not provided', async () => {
     const req: Request = expect.any(request)
     req.body = {
-      appoinments: [
-        {
-          id: 1,
-          end: new Date(),
-          createdAt: '2020-09-02 14:23:12',
-          updatedAt: '2020-09-28 14:23:12',
-        },
-      ],
+      id: 1,
+      end: new Date(),
+      createdAt: '2020-09-02 14:23:12',
+      updatedAt: '2020-09-28 14:23:12',
     }
     const res: Response = response
     const next = jest.fn()
@@ -99,14 +87,10 @@ describe('AppoinmentController', () => {
   it('should throw an error if end date not provided', async () => {
     const req: Request = expect.any(request)
     req.body = {
-      appoinments: [
-        {
-          id: 1,
-          start: new Date(),
-          createdAt: '2020-09-02 14:23:12',
-          updatedAt: '2020-09-28 14:23:12',
-        },
-      ],
+      id: 1,
+      start: new Date(),
+      createdAt: '2020-09-02 14:23:12',
+      updatedAt: '2020-09-28 14:23:12',
     }
     const res: Response = response
     const next = jest.fn()
@@ -127,14 +111,10 @@ describe('AppoinmentController', () => {
   it('should throw an error if createdAt not provided', async () => {
     const req: Request = expect.any(request)
     req.body = {
-      appoinments: [
-        {
-          id: 1,
-          start: '2020-10-10 20:20',
-          end: '2020-10-10 20:30',
-          updatedAt: '2020-09-28 14:23:12',
-        },
-      ],
+      id: 1,
+      start: '2020-10-10 20:20',
+      end: '2020-10-10 20:30',
+      updatedAt: '2020-09-28 14:23:12',
     }
     const res: Response = response
     const next = jest.fn()
@@ -154,14 +134,10 @@ describe('AppoinmentController', () => {
   it('should throw an error if updatedAt not provided', async () => {
     const req: Request = expect.any(request)
     req.body = {
-      appoinments: [
-        {
-          id: 1,
-          start: '2020-10-10 20:20',
-          end: '2020-10-10 20:30',
-          createdAt: '2020-09-02 14:23:12',
-        },
-      ],
+      id: 1,
+      start: '2020-10-10 20:20',
+      end: '2020-10-10 20:30',
+      createdAt: '2020-09-02 14:23:12',
     }
     const res: Response = response
     const next = jest.fn()
@@ -181,15 +157,11 @@ describe('AppoinmentController', () => {
   it('should return an error if createdAt or updatedAt was not Date', async () => {
     const req: Request = expect.any(request)
     req.body = {
-      appoinments: [
-        {
-          id: 1,
-          start: new Date(),
-          end: '2020-09-02 14:23:12',
-          createdAt: '2020-09-02 14:23:12',
-          updatedAt: 'asdasdgg',
-        },
-      ],
+      id: 1,
+      start: new Date(),
+      end: '2020-09-02 14:23:12',
+      createdAt: '2020-09-02 14:23:12',
+      updatedAt: 'asdasdgg',
     }
     const res: Response = response
     const next = jest.fn()
@@ -212,15 +184,11 @@ describe('AppoinmentController', () => {
   it('should return an error if start and end date was the same', async () => {
     const req: Request = expect.any(request)
     req.body = {
-      appoinments: [
-        {
-          id: 1,
-          start: new Date(),
-          end: new Date(),
-          createdAt: '2020-09-02 14:23:12',
-          updatedAt: '2020-09-28 14:23:12',
-        },
-      ],
+      id: 1,
+      start: new Date(),
+      end: new Date(),
+      createdAt: '2020-09-02 14:23:12',
+      updatedAt: '2020-09-28 14:23:12',
     }
     const res: Response = response
     const next = jest.fn()
@@ -255,15 +223,11 @@ describe('AppoinmentController', () => {
 
     const req: Request = expect.any(request)
     req.body = {
-      appoinments: [
-        {
-          id: 1,
-          start: '2020-10-10 20:20',
-          end: '2020-10-10 20:30',
-          createdAt: '2020-09-02 14:23:12',
-          updatedAt: '2020-09-28 14:23:12',
-        },
-      ],
+      id: 1,
+      start: '2020-10-10 20:20',
+      end: '2020-10-10 20:30',
+      createdAt: '2020-09-02 14:23:12',
+      updatedAt: '2020-09-28 14:23:12',
     }
     const res: Response = response
     res.status = jest.fn().mockReturnThis()
@@ -301,15 +265,13 @@ describe('AppoinmentController', () => {
     expect(res.status).toBeCalledTimes(1)
     expect(res.status).toBeCalledWith(201)
     expect(res.json).toBeCalledWith({
-      appoinments: [
-        new Appoinment(
-          1,
-          new Date('2020-10-10 20:20'),
-          new Date('2020-10-10 20:30'),
-          new Date('2020-09-02 14:23:12'),
-          new Date('2020-09-28 14:23:12')
-        ),
-      ],
+      appoinment: new Appoinment(
+        1,
+        new Date('2020-10-10 20:20'),
+        new Date('2020-10-10 20:30'),
+        new Date('2020-09-02 14:23:12'),
+        new Date('2020-09-28 14:23:12')
+      ),
     })
   })
 })

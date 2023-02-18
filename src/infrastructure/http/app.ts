@@ -1,11 +1,13 @@
 import { errorHandler } from './middlewares/ErrorHandler'
 import express from 'express'
 import { Route } from 'src/adapters/IRoute'
+import morgan from 'morgan'
 
 export class Application {
   private expressApplication: express.Application = express()
 
   constructor(private routeList: Route[]) {
+    this.expressApplication.use(morgan('dev'))
     this.appConfiguration()
     this.mountRoute()
   }
@@ -21,6 +23,9 @@ export class Application {
   }
 
   getExpressApplication(): express.Application {
+    this.expressApplication.listen(3000, () => {
+      console.log('App start on port 3000')
+    })
     return this.expressApplication
   }
 }

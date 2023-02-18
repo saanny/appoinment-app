@@ -6,6 +6,7 @@ describe('IAppoinmentStorer Tests', () => {
   it('should store appoinment in the repository and return appoinment', async () => {
     const appoinmentRepository: AppoinmentRepository = {
       store: jest.fn(),
+      retriveOneById: jest.fn(),
     }
     const appoinmentStorer = new AppoinmentStorer(appoinmentRepository)
     const appoinment = new Appoinment(

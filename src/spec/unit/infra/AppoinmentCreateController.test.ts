@@ -1,4 +1,4 @@
-import { AppoinmentController } from '@Application/AppoinmentController'
+import { AppoinmentStorerController } from '@Application/AppoinmentStorerController'
 import { AppoinmentValidationError } from '@Domain/errors/AppoinmentValidationError'
 import { Appoinment } from '@Domain/models/Appointment'
 import { RequestValidationError } from '@Infra/http/RequestValidationError'
@@ -22,7 +22,9 @@ describe('AppoinmentController', () => {
     const IAppoinmentStorer: IAppoinmentStorer = {
       storeAppoinment: jest.fn(),
     }
-    const appoinmentController = new AppoinmentController(IAppoinmentStorer)
+    const appoinmentController = new AppoinmentStorerController(
+      IAppoinmentStorer
+    )
     await appoinmentController.createAppoinment(req, res, next)
 
     expect(next).toBeCalledTimes(1)
@@ -48,7 +50,9 @@ describe('AppoinmentController', () => {
     const IAppoinmentStorer: IAppoinmentStorer = {
       storeAppoinment: jest.fn(),
     }
-    const appoinmentController = new AppoinmentController(IAppoinmentStorer)
+    const appoinmentController = new AppoinmentStorerController(
+      IAppoinmentStorer
+    )
     await appoinmentController.createAppoinment(req, res, next)
 
     expect(next).toBeCalledTimes(1)
@@ -57,7 +61,7 @@ describe('AppoinmentController', () => {
     )
   })
 
-  it('should throw an error if start or end date not provided', async () => {
+  it('should throw an error if start date not provided', async () => {
     const req: Request = expect.any(request)
     req.body = {
       appoinments: [
@@ -74,7 +78,9 @@ describe('AppoinmentController', () => {
     const IAppoinmentStorer: IAppoinmentStorer = {
       storeAppoinment: jest.fn(),
     }
-    const appoinmentController = new AppoinmentController(IAppoinmentStorer)
+    const appoinmentController = new AppoinmentStorerController(
+      IAppoinmentStorer
+    )
     await appoinmentController.createAppoinment(req, res, next)
 
     expect(next).toBeCalledTimes(1)
@@ -83,7 +89,7 @@ describe('AppoinmentController', () => {
     )
   })
 
-  it('should throw an error if start or end date not provided', async () => {
+  it('should throw an error if end date not provided', async () => {
     const req: Request = expect.any(request)
     req.body = {
       appoinments: [
@@ -100,7 +106,9 @@ describe('AppoinmentController', () => {
     const IAppoinmentStorer: IAppoinmentStorer = {
       storeAppoinment: jest.fn(),
     }
-    const appoinmentController = new AppoinmentController(IAppoinmentStorer)
+    const appoinmentController = new AppoinmentStorerController(
+      IAppoinmentStorer
+    )
     await appoinmentController.createAppoinment(req, res, next)
 
     expect(next).toBeCalledTimes(1)
@@ -126,7 +134,9 @@ describe('AppoinmentController', () => {
     const IAppoinmentStorer: IAppoinmentStorer = {
       storeAppoinment: jest.fn(),
     }
-    const appoinmentController = new AppoinmentController(IAppoinmentStorer)
+    const appoinmentController = new AppoinmentStorerController(
+      IAppoinmentStorer
+    )
     await appoinmentController.createAppoinment(req, res, next)
 
     expect(next).toBeCalledTimes(1)
@@ -151,7 +161,9 @@ describe('AppoinmentController', () => {
     const IAppoinmentStorer: IAppoinmentStorer = {
       storeAppoinment: jest.fn(),
     }
-    const appoinmentController = new AppoinmentController(IAppoinmentStorer)
+    const appoinmentController = new AppoinmentStorerController(
+      IAppoinmentStorer
+    )
     await appoinmentController.createAppoinment(req, res, next)
 
     expect(next).toBeCalledTimes(1)
@@ -177,7 +189,9 @@ describe('AppoinmentController', () => {
     const IAppoinmentStorer: IAppoinmentStorer = {
       storeAppoinment: jest.fn(),
     }
-    const appoinmentController = new AppoinmentController(IAppoinmentStorer)
+    const appoinmentController = new AppoinmentStorerController(
+      IAppoinmentStorer
+    )
     await appoinmentController.createAppoinment(req, res, next)
 
     expect(next).toBeCalledTimes(1)
@@ -206,7 +220,9 @@ describe('AppoinmentController', () => {
     const IAppoinmentStorer: IAppoinmentStorer = {
       storeAppoinment: jest.fn(),
     }
-    const appoinmentController = new AppoinmentController(IAppoinmentStorer)
+    const appoinmentController = new AppoinmentStorerController(
+      IAppoinmentStorer
+    )
     await appoinmentController.createAppoinment(req, res, next)
 
     expect(next).toBeCalledTimes(1)
@@ -247,7 +263,9 @@ describe('AppoinmentController', () => {
           )
         ),
     }
-    const appoinmentController = new AppoinmentController(IAppoinmentStorer)
+    const appoinmentController = new AppoinmentStorerController(
+      IAppoinmentStorer
+    )
     await appoinmentController.createAppoinment(req, res, next)
 
     expect(next).toBeCalledTimes(0)

@@ -2,8 +2,8 @@ import dotenv from 'dotenv'
 import { Application } from './infrastructure/http/app'
 import { Route } from './adapters/IRoute'
 import dbInit from './infrastructure/drivers/sequlize/init'
-import { AppoinmentController } from '@Application/AppoinmentController'
-import { AppoinmentCreateRoute } from '@Application/AppoinmentCreateRoute'
+import { AppoinmentStorerController } from '@Application/AppoinmentStorerController'
+import { AppoinmentStorerRoute } from '@Application/AppoinmentStorerRoute'
 import { IAppoinmentStorer } from './services/IAppoinmentStorer'
 import { Appoinment } from '@Domain/models/Appointment'
 import { AppoinmentStorer } from './services/AppoinmentStorer'
@@ -17,11 +17,11 @@ const appoinmentStorer: IAppoinmentStorer = new AppoinmentStorer(
   appoinmentRepository
 )
 
-const appoinmentController = new AppoinmentController(appoinmentStorer)
-const appoinmentCreateRoute = new AppoinmentCreateRoute(appoinmentController)
+const appoinmentController = new AppoinmentStorerController(appoinmentStorer)
+const appoinmentStorerRoute = new AppoinmentStorerRoute(appoinmentController)
 
 const routeList: Route[] = []
-routeList.push(appoinmentCreateRoute)
+routeList.push(appoinmentStorerRoute)
 
 const application = new Application(routeList)
 const expressApplication = application.getExpressApplication()

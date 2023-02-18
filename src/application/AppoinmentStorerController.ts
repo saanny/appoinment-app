@@ -3,8 +3,8 @@ import { RequestValidationError } from '@Infra/http/RequestValidationError'
 import { NextFunction, Request, Response } from 'express'
 import { IAppoinmentStorer } from 'src/services/IAppoinmentStorer'
 
-export class AppoinmentController {
-  constructor(private IAppoinmentStorer: IAppoinmentStorer) {}
+export class AppoinmentStorerController {
+  constructor(private appoinmentStorer: IAppoinmentStorer) {}
 
   createAppoinment = async (
     request: Request,
@@ -46,12 +46,13 @@ export class AppoinmentController {
           new Date(appoinmentData.createdAt),
           new Date(appoinmentData.updatedAt)
         )
-        const newAppoinment = await this.IAppoinmentStorer.storeAppoinment(
+        const newAppoinment = await this.appoinmentStorer.storeAppoinment(
           appoinment
         )
 
         appoinments.push(newAppoinment)
       }
+
       response.status(201).json({
         appoinments,
       })

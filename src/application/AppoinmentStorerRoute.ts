@@ -6,7 +6,7 @@ export class AppoinmentStorerRoute implements Route {
   constructor(private appoinmentStorerController: AppoinmentStorerController) {}
   mountRoute(application: Application): void {
     application
-      .route('/api/v1/appoinments')
+      .route('/api/v1/appointments')
       .post(this.appoinmentStorerController.createAppoinment)
   }
 }

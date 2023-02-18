@@ -1,5 +1,12 @@
 import { AppoinmentValidationError } from '@Domain/errors/AppoinmentValidationError'
 
+export interface IAppoinment {
+  id: number
+  start: string
+  end: string
+  createdAt: string
+  updatedAt: string
+}
 export class Appoinment {
   constructor(
     private id: number,

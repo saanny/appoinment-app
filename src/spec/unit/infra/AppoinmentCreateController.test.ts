@@ -2,10 +2,17 @@ import { AppoinmentStorerController } from '@Application/AppoinmentStorerControl
 import { AppoinmentValidationError } from '@Domain/errors/AppoinmentValidationError'
 import { Appoinment } from '@Domain/models/Appointment'
 import { RequestValidationError } from '@Infra/http/RequestValidationError'
+import AppoinmentModel from '@Infra/repositories/AppoinmentModel'
 import { IAppoinmentStorer } from '@Services/IAppoinmentStorer'
 import { request, Request, response, Response } from 'express'
 
 describe('AppoinmentController', () => {
+  afterAll(async () => {
+    await AppoinmentModel.destroy({
+      where: {},
+      truncate: true,
+    })
+  })
   it('should throw an error if id not provided', async () => {
     const req: Request = expect.any(request)
     req.body = {
@@ -234,6 +241,18 @@ describe('AppoinmentController', () => {
   })
 
   it('should store appoinment and return appoinment', async () => {
+    AppoinmentModel.create = jest
+      .fn()
+      .mockResolvedValue(
+        new Appoinment(
+          1,
+          new Date('2020-10-10 20:20'),
+          new Date('2020-10-10 20:30'),
+          new Date('2020-09-02 14:23:12'),
+          new Date('2020-09-28 14:23:12')
+        )
+      )
+
     const req: Request = expect.any(request)
     req.body = {
       appoinments: [

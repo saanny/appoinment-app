@@ -12,8 +12,15 @@ export class AppoinmentStorerController {
     next: NextFunction
   ): Promise<void> => {
     try {
+      // most write test for this block of code
+      if (!request.body.appoinments)
+        throw new RequestValidationError(
+          'Appoinments field is required to provide'
+        )
+
       const appoinments: Array<Appoinment> = []
-      for await (const appoinmentData of request.body.appoinments) {
+
+      for (const appoinmentData of request.body.appoinments) {
         // We can use chain of responsibility pattern here for validation
 
         if (!appoinmentData.id)
@@ -38,7 +45,6 @@ export class AppoinmentStorerController {
           throw new RequestValidationError(
             'Please provide valid format for createdAt or updatedAt date fields'
           )
-
         const appoinment = new Appoinment(
           appoinmentData.id,
           new Date(appoinmentData.start),
@@ -49,9 +55,10 @@ export class AppoinmentStorerController {
         const newAppoinment = await this.appoinmentStorer.storeAppoinment(
           appoinment
         )
-
         appoinments.push(newAppoinment)
       }
+
+      const appoinmentsValidatedData = [...appoinments]
 
       response.status(201).json({
         appoinments,

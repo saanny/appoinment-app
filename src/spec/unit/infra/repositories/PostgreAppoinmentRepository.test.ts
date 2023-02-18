@@ -19,7 +19,7 @@ describe('PostgreAppoinmentRepository tests', () => {
     expect(AppoinmentModel.create).toBeCalledWith(appoinment)
   })
 
-  it('should return null object when the appoinment is not found', async () => {
+  it('should return null object when the appoinment is not found by Id', async () => {
     AppoinmentModel.findOne = jest.fn().mockResolvedValue(null)
 
     const postgreAppoinmentRepository = new PostgreAppoinmentRepository()
@@ -27,7 +27,7 @@ describe('PostgreAppoinmentRepository tests', () => {
     expect(await postgreAppoinmentRepository.retriveOneById(1)).toBe(null)
   })
 
-  it('should retrive a appoinment when it is found', async () => {
+  it('should retrive a appoinment when it is found by Id', async () => {
     AppoinmentModel.findOne = jest
       .fn()
       .mockResolvedValue(

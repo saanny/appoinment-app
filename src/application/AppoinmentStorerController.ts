@@ -1,10 +1,10 @@
 import { Appoinment } from '@Domain/models/Appointment'
 import { RequestValidationError } from '@Infra/http/RequestValidationError'
 import { NextFunction, Request, Response } from 'express'
-import { AppoinmentStorer } from 'src/services/AppoinmentStorer'
+import { IAppoinmentStorer } from 'src/services/IAppoinmentStorer'
 
-export class AppoinmentController {
-  constructor(private appoinmentStorer: AppoinmentStorer) {}
+export class AppoinmentStorerController {
+  constructor(private appoinmentStorer: IAppoinmentStorer) {}
 
   createAppoinment = async (
     request: Request,
@@ -52,6 +52,7 @@ export class AppoinmentController {
 
         appoinments.push(newAppoinment)
       }
+
       response.status(201).json({
         appoinments,
       })

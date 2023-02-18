@@ -50,6 +50,9 @@
 			"@Infra/*": [
 				"src/infrastructure/*"
 			],
+			"@Services/*": [
+				"src/services/*"
+			],
 			"@Web/*": [
 				"src/web/*"
 			],

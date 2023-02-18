@@ -13,4 +13,19 @@ export class Appoinment {
         'The start date and end date it should not be the same'
       )
   }
+  getId() {
+    return this.id
+  }
+  getStart() {
+    return this.start
+  }
+  getEnd() {
+    return this.end
+  }
+  getCreatedAt() {
+    return this.createdAt
+  }
+  getUpdatedAt() {
+    return this.updatedAt
+  }
 }

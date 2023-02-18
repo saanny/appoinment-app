@@ -15,6 +15,7 @@ export default {
     '@Domain/(.*)': '<rootDir>/src/domain/$1',
     '@Application/(.*)': '<rootDir>/src/application/$1',
     '@Infra/(.*)': '<rootDir>/src/infrastructure/$1',
+    '@Services/(.*)': '<rootDir>/src/services/$1',
   },
   testEnvironment: 'node',
 }

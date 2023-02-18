@@ -5,7 +5,6 @@ import dbInit from './infrastructure/drivers/sequlize/init'
 import { AppoinmentStorerController } from '@Application/AppoinmentStorerController'
 import { AppoinmentStorerRoute } from '@Application/AppoinmentStorerRoute'
 import { IAppoinmentStorer } from './services/IAppoinmentStorer'
-import { Appoinment } from '@Domain/models/Appointment'
 import { AppoinmentStorer } from './services/AppoinmentStorer'
 import { PostgreAppoinmentRepository } from '@Infra/repositories/PostgreAppoinmentRepository'
 

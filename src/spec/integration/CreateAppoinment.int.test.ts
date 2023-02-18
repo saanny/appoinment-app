@@ -1,8 +1,15 @@
 import expressApplication from '../../bootstrap'
 import supertest from 'supertest'
+import AppoinmentModel from '@Infra/repositories/AppoinmentModel'
 
 const request = supertest(expressApplication)
 describe('store appoinment integration tests', () => {
+  afterAll(async () => {
+    await AppoinmentModel.destroy({
+      where: {},
+      truncate: true,
+    })
+  })
   it('should return an error if the body dose not have id', async () => {
     const response = await request.post('/api/v1/appoinments').send({
       appoinments: [
@@ -203,13 +210,13 @@ describe('store appoinment integration tests', () => {
           createdAt: '2020-08-02 13:23:12',
           updatedAt: '2020-09-28 14:23:12',
         },
-        // {
-        //     id: 1,
-        //     start: "2020-10-17 14:40",
-        //     end: "2020-10-17 15:30",
-        //     createdAt: "2020-03-02 19:23:12",
-        //     updatedAt: "2020-09-28 14:24:12"
-        // }
+        {
+          id: 1,
+          start: '2020-10-17 14:40',
+          end: '2020-10-17 15:30',
+          createdAt: '2020-03-02 19:23:12',
+          updatedAt: '2020-09-28 14:24:12',
+        },
       ],
     })
 

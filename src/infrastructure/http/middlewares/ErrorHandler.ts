@@ -1,3 +1,4 @@
+import { AppoinmentAlreadyExistError } from '@Domain/errors/AppoinmentAlreadyExistError'
 import { AppoinmentValidationError } from '@Domain/errors/AppoinmentValidationError'
 import { NextFunction, Request, Response } from 'express'
 import { RequestValidationError } from '../RequestValidationError'
@@ -10,7 +11,8 @@ export function errorHandler(
 ): void {
   if (
     error instanceof RequestValidationError ||
-    error instanceof AppoinmentValidationError
+    error instanceof AppoinmentValidationError ||
+    error instanceof AppoinmentAlreadyExistError
   ) {
     response.status(400).json({
       name: error.name,

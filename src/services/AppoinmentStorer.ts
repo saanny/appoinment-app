@@ -1,7 +1,6 @@
 import { Appoinment } from '@Domain/models/Appointment'
 import { AppoinmentRepository } from './AppoinmentRepository'
 import { IAppoinmentStorer } from './IAppoinmentStorer'
-import { AppoinmentAlreadyExistError } from '@Domain/errors/AppoinmentAlreadyExistError'
 import { AppoinmentValidationError } from '@Domain/errors/AppoinmentValidationError'
 export class AppoinmentStorer implements IAppoinmentStorer {
   constructor(private appoinmentRepository: AppoinmentRepository) {}

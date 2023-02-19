@@ -7,6 +7,10 @@ import { AppoinmentStorerRoute } from '@Application/AppoinmentStorerRoute'
 import { IAppoinmentStorer } from './services/IAppoinmentStorer'
 import { AppoinmentStorer } from './services/AppoinmentStorer'
 import { PostgreAppoinmentRepository } from '@Infra/repositories/PostgreAppoinmentRepository'
+import { AppoinmentRetriverController } from '@Application/AppoinmentRetriverController'
+import { IAppoinmentRetriver } from '@Services/IAppoinmentRetriver'
+import { AppoinmentRetriver } from '@Services/AppoinmentRetriver'
+import { AppoinmentRetriverRoute } from '@Application/AppoinmentRetriverRoute'
 
 dotenv.config()
 dbInit()
@@ -15,12 +19,26 @@ const appoinmentRepository = new PostgreAppoinmentRepository()
 const appoinmentStorer: IAppoinmentStorer = new AppoinmentStorer(
   appoinmentRepository
 )
+const appoinmentRetriver: IAppoinmentRetriver = new AppoinmentRetriver(
+  appoinmentRepository
+)
+const appoinmentStorerController = new AppoinmentStorerController(
+  appoinmentStorer
+)
+const appoinmentStorerRoute = new AppoinmentStorerRoute(
+  appoinmentStorerController
+)
 
-const appoinmentController = new AppoinmentStorerController(appoinmentStorer)
-const appoinmentStorerRoute = new AppoinmentStorerRoute(appoinmentController)
+const appoinmentRetriverController = new AppoinmentRetriverController(
+  appoinmentRetriver
+)
+const appoinmentRetriverRoute = new AppoinmentRetriverRoute(
+  appoinmentRetriverController
+)
 
 const routeList: Route[] = []
 routeList.push(appoinmentStorerRoute)
+routeList.push(appoinmentRetriverRoute)
 
 const application = new Application(routeList)
 const expressApplication = application.getExpressApplication()

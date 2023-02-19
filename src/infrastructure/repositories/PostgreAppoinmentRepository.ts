@@ -3,6 +3,13 @@ import { AppoinmentRepository } from 'src/services/AppoinmentRepository'
 import AppoinmentModel from './AppoinmentModel'
 
 export class PostgreAppoinmentRepository implements AppoinmentRepository {
+  async retriveAll(query: any): Promise<Appoinment[] | []> {
+    const result: any = await AppoinmentModel.findAll({
+      where: query,
+      raw: true,
+    })
+    return result.length > 0 ? result : []
+  }
   async updateOneById(
     id: number,
     appoinment: Appoinment

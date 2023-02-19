@@ -1,8 +1,7 @@
 import { Appoinment } from '@Domain/models/Appointment'
-import { RequestValidationError } from '@Infra/http/RequestValidationError'
 import AppoinmentValidator from '@Services/appoinmentValidator/AppoinmentValidator'
+import { IAppoinmentStorer } from '@Services/IAppoinmentStorer'
 import { NextFunction, Request, Response } from 'express'
-import { IAppoinmentStorer } from 'src/services/IAppoinmentStorer'
 
 export class AppoinmentStorerController {
   constructor(private appoinmentStorer: IAppoinmentStorer) {}

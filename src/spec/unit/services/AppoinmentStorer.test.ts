@@ -9,6 +9,7 @@ describe('IAppoinmentStorer Tests', () => {
       retriveOneById: jest.fn(),
       retriveOneByDates: jest.fn(),
       updateOneById: jest.fn(),
+      retriveAll: jest.fn(),
     }
     const appoinmentStorer = new AppoinmentStorer(appoinmentRepository)
     const appoinment = new Appoinment(

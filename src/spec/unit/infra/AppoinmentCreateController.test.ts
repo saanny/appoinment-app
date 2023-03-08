@@ -274,4 +274,43 @@ describe('AppoinmentController', () => {
       ),
     })
   })
+  it.only('should not create appoinment if range date exist', async () => {
+    AppoinmentModel.findOne = jest
+      .fn()
+      .mockResolvedValue(
+        new Appoinment(
+          1,
+          new Date('2020-10-10 20:20'),
+          new Date('2020-10-10 20:30'),
+          new Date('2020-09-02 14:23:12'),
+          new Date('2020-09-28 14:23:12')
+        )
+      )
+
+    const req: Request = expect.any(request)
+    req.body = {
+      id: 1,
+      start: '2020-10-10 20:20',
+      end: '2020-10-10 20:30',
+      createdAt: '2020-09-02 14:23:12',
+      updatedAt: '2020-09-28 14:23:12',
+    }
+    const res: Response = response
+    const next = jest.fn()
+    const appoinmentStorer: IAppoinmentStorer = {
+      storeAppoinment: jest.fn(),
+    }
+    const appoinmentController = new AppoinmentStorerController(
+      appoinmentStorer
+    )
+    await appoinmentController.createAppoinment(req, res, next)
+
+    expect(next).toBeCalledTimes(1)
+
+    expect(next).toBeCalledWith(
+      new AppoinmentValidationError(
+        'The time range for this appoinment is not available'
+      )
+    )
+  })
 })

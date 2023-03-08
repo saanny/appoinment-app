@@ -21,12 +21,14 @@ export class AppoinmentStorerController {
         new Date(request.body.createdAt),
         new Date(request.body.updatedAt)
       )
+
       await this.appoinmentStorer.storeAppoinment(appoinment)
 
       response.status(201).json({
         appoinment,
       })
     } catch (error) {
+      console.log(error)
       next(error)
     }
   }

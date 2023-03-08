@@ -1,4 +1,5 @@
 import { Appoinment } from '@Domain/models/Appointment'
+import AppoinmentModel from '@Infra/repositories/AppoinmentModel'
 import { AppoinmentRepository } from '@Services/AppoinmentRepository'
 import { AppoinmentStorer } from '@Services/AppoinmentStorer'
 

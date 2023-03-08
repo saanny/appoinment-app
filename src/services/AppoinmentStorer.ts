@@ -7,16 +7,18 @@ export class AppoinmentStorer implements IAppoinmentStorer {
 
   async storeAppoinment(appoinment: Appoinment): Promise<Appoinment> {
     // must write test for this senario
+
     const appoinmentTimeRangeExist =
       await this.appoinmentRepository.retriveOneByDates(
         appoinment.getStart(),
         appoinment.getEnd()
       )
 
-    if (appoinmentTimeRangeExist)
+    if (appoinmentTimeRangeExist) {
       throw new AppoinmentValidationError(
-        `The time range for this appoinment is not available start: ${appoinment.getStart()} - end: ${appoinment.getEnd()}`
+        'The time range for this appoinment is not available'
       )
+    }
 
     const appoinmentExist = await this.appoinmentRepository.retriveOneById(
       appoinment.getId()

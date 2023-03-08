@@ -1,6 +1,7 @@
 import { Appoinment } from '@Domain/models/Appointment'
 import { AppoinmentRepository } from 'src/services/AppoinmentRepository'
 import AppoinmentModel from './AppoinmentModel'
+import { Sequelize, Op } from 'sequelize'
 
 export class PostgreAppoinmentRepository implements AppoinmentRepository {
   async retriveAll(query: any): Promise<Appoinment[] | []> {
@@ -30,8 +31,24 @@ export class PostgreAppoinmentRepository implements AppoinmentRepository {
     return appoinment
   }
   async retriveOneByDates(start: Date, end: Date): Promise<Appoinment | null> {
+    // must check if startdate exist
+    // must check if enddate exist
+
     const result = await AppoinmentModel.findOne({
-      where: { start, end },
+      where: {
+        [Op.or]: [
+          Sequelize.where(
+            Sequelize.fn('date', Sequelize.col('start')),
+            '>=',
+            start
+          ),
+          Sequelize.where(
+            Sequelize.fn('date', Sequelize.col('end')),
+            '<=',
+            end
+          ),
+        ],
+      },
     })
 
     if (!result) return null
@@ -46,6 +63,7 @@ export class PostgreAppoinmentRepository implements AppoinmentRepository {
 
     return appoinment
   }
+
   async retriveOneById(id: number): Promise<Appoinment | null> {
     const result = await AppoinmentModel.findOne({
       where: { id },

@@ -8,7 +8,7 @@
     "test": "jest",
     "build": "tsc",
     "docker:up": "docker-compose up -d",
-    "docker:down": "docker-compose down",
+    "docker:down": "docker-compose down --volumes",
     "test:watch": "jest --watch --verbose",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint --fix",
